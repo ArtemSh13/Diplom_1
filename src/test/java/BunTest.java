@@ -25,6 +25,7 @@ public class BunTest {
 
     @Test
     public void getPriceReturnFloat() {
-        Assert.assertEquals("Actual bun price doesn't match the expected price", expectedPrice, bun.getPrice());
+        Assert.assertEquals("Actual bun price doesn't match the expected price", expectedPrice, bun.getPrice(),
+                0.001);
     }
 }
