@@ -1,4 +1,3 @@
-import org.hamcrest.MatcherAssert;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,9 +8,6 @@ import praktikum.IngredientType;
 
 import java.util.ArrayList;
 import java.util.Random;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
 
 public class BurgerTest {
     public final static int INGREDIENTS_NUMBER = 10;
