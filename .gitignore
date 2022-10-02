@@ -1,0 +1,6 @@
+# Default ignored files
+.idea/libraries/
+.idea/shelf/
+.idea/modules.xml
+.idea/workspace.xml
+target/
