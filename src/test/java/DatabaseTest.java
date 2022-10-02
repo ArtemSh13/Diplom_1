@@ -19,7 +19,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void availableBuns() {
+    public void availableBunsReturnPresetBuns() {
         List<Bun> expectedBuns = new ArrayList<>();
         expectedBuns.add(new Bun("black bun", 100));
         expectedBuns.add(new Bun("white bun", 200));
@@ -30,7 +30,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void availableIngredients() {
+    public void availableIngredientsReturnPresetIngredients() {
         List<Ingredient> expectedIngredients = new ArrayList<>();
         expectedIngredients.add(new Ingredient(IngredientType.SAUCE, "hot sauce", 100));
         expectedIngredients.add(new Ingredient(IngredientType.SAUCE, "sour cream", 200));
