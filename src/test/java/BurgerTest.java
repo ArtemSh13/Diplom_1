@@ -31,6 +31,10 @@ public class BurgerTest {
         Random random = new Random();
         name = "name" + random.nextInt();
         price = random.nextFloat();
+        Mockito.when(bun.getName()).thenReturn(name);
+        Mockito.when(bun.getPrice()).thenReturn(price);
+        Mockito.when(ingredient.getName()).thenReturn(name);
+        Mockito.when(ingredient.getPrice()).thenReturn(price);
         burger = new Burger();
     }
 
@@ -86,12 +90,10 @@ public class BurgerTest {
     @Test
     public void getPriceReturnPrecalculated() {
         float totalPrice = 0;
-        Mockito.when(bun.getPrice()).thenReturn(price);
         // A burger needs 2 buns
         totalPrice += price * 2;
 
         ArrayList<Ingredient> ingredients = createRandomIngredients();
-        Mockito.when(ingredient.getPrice()).thenReturn(price);
         for (Ingredient ingredient : ingredients) {
             totalPrice += ingredient.getPrice();
         }
@@ -103,10 +105,6 @@ public class BurgerTest {
 
     @Test
     public void getReceiptReturnString() {
-        Mockito.when(bun.getName()).thenReturn(name);
-        Mockito.when(bun.getPrice()).thenReturn(price);
-        Mockito.when(ingredient.getName()).thenReturn(name);
-        Mockito.when(ingredient.getPrice()).thenReturn(price);
         Random random = new Random();
         IngredientType[] ingredientTypes = new IngredientType[] {IngredientType.FILLING, IngredientType.SAUCE};
         Mockito.when(ingredient.getType()).thenReturn(ingredientTypes[random.nextInt(ingredientTypes.length)]);
