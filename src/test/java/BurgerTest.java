@@ -8,6 +8,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import praktikum.Bun;
 import praktikum.Burger;
 import praktikum.Ingredient;
+import praktikum.IngredientType;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -98,6 +99,33 @@ public class BurgerTest {
         burger.bun = bun;
         burger.ingredients = ingredients;
         Assert.assertEquals("Returned price isn't correct", totalPrice, burger.getPrice(), 0.001);
+    }
+
+    @Test
+    public void getReceiptReturnString() {
+        Mockito.when(bun.getName()).thenReturn(name);
+        Mockito.when(bun.getPrice()).thenReturn(price);
+        Mockito.when(ingredient.getName()).thenReturn(name);
+        Mockito.when(ingredient.getPrice()).thenReturn(price);
+        Random random = new Random();
+        IngredientType[] ingredientTypes = new IngredientType[] {IngredientType.FILLING, IngredientType.SAUCE};
+        Mockito.when(ingredient.getType()).thenReturn(ingredientTypes[random.nextInt(ingredientTypes.length)]);
+        burger.bun = bun;
+        ArrayList<Ingredient> ingredients = createRandomIngredients();
+        burger.ingredients = ingredients;
+
+        StringBuilder receipt = new StringBuilder(String.format("(==== %s ====)%n", bun.getName()));
+
+        for (Ingredient ingredient : ingredients) {
+            receipt.append(String.format("= %s %s =%n", ingredient.getType().toString().toLowerCase(),
+                    ingredient.getName()));
+        }
+
+        receipt.append(String.format("(==== %s ====)%n", bun.getName()));
+        receipt.append(String.format("%nPrice: %f%n", burger.getPrice()));
+
+        Assert.assertEquals("Burger generated receipt isn't as expected",
+                receipt.toString(), burger.getReceipt());
     }
 
 }
