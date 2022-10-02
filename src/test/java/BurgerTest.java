@@ -75,27 +75,17 @@ public class BurgerTest {
     @Test
     public void moveIngredient() {
         Random random = new Random();
-        ArrayList<Ingredient> ingredients = createRandomIngredients();
+        ArrayList<Ingredient> expectedIngredients = createRandomIngredients();
         int oldIndex = 0;
-        int newIndex = random.nextInt(ingredients.size());
-        Ingredient ingredient = ingredients.get(oldIndex);
-        burger.ingredients = new ArrayList<>(ingredients);
+        int newIndex = random.nextInt(expectedIngredients.size());
 
+        burger.ingredients = new ArrayList<>(expectedIngredients);
+
+        expectedIngredients.add(newIndex, expectedIngredients.remove(oldIndex));
         burger.moveIngredient(oldIndex, newIndex);
-        /*
-        It checks that:
-        1) The element is presented in the new place
-        2) The element isn't presented in the old place
-        3) The set of elements remains the same
-        */
 
-//        boolean testCondition = burger.ingredients.get(newIndex).equals(ingredient)
-//                && !(burger.ingredients.get(oldIndex).equals(ingredient))
-//                && burger.ingredients.containsAll(oldIngredients);
-
-        MatcherAssert.assertThat(burger.ingredients.get(newIndex), is(ingredient));
-        MatcherAssert.assertThat(burger.ingredients.get(oldIndex), is(not(ingredient)));
-        MatcherAssert.assertThat(burger.ingredients.containsAll(ingredients), is(true));
+        Assert.assertEquals("The changed ingredients list isn't as expected",
+                expectedIngredients, burger.ingredients);
     }
 
     @Test
