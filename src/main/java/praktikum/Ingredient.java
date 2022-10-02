@@ -29,4 +29,17 @@ public class Ingredient {
         return type;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Ingredient bun = (Ingredient) obj;
+        return this.name.equals(bun.name) && this.price == bun.price;
+    }
+
 }
