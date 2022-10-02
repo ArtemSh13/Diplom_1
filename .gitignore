@@ -4,4 +4,4 @@
 .idea/modules.xml
 .idea/workspace.xml
 target/
-!/target/site/jacoco/
+!/target/site/
